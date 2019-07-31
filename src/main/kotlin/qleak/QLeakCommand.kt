@@ -13,8 +13,7 @@ import java.io.File
              "@|green  / _` | |/ _ \\/ _` | |/ /|@",
              "@|green | (_| | |  __/ (_| |   < |@",
              "@|green  \\__, |_|\\___|\\__,_|_|\\_\\|@",
-             "@|green     |_|                  |@",
-             "@|bold,yellow bleak|@:%n%n"
+             "@|green     |_|                  |@"
          ],
          description = ["Hprof leak analyzer"],
          mixinStandardHelpOptions = true,
@@ -32,6 +31,7 @@ class QLeakCommand : Runnable {
     override fun run() {
         // business logic here
         println("Hi!")
+        println("The file is $hprofPath")
     }
 
     companion object {
