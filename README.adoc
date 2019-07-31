@@ -1,0 +1,31 @@
+
+
+How to analyze a heap dump ?
+
+* Maybe use this analysis lib, cod extracted from Netbeans
+as a Java API
++
+https://github.com/aragozin/jvm-tools/tree/master/hprof-heap
+
+* Investigate or reuse leak-canary code from Square / PY
++
+https://github.com/square/leakcanary
+
+https://square.github.io/leakcanary/changelog/#version-20-beta-1-2019-07-30
+https://github.com/square/leakcanary/blob/master/shark-graph/src/test/java/shark/JvmHprofParsingTest.kt
+
+
+https://github.com/aragozin/jvm-tools/tree/master/hprof-heap[JVM Heap Dump Analysis library based on Netbeans profiler]
+
+.Some possible references
+* https://stackoverflow.com/questions/1329280/hprof-file-format
+* https://stackoverflow.com/questions/15341833/jmap-dump-format-specification
+* https://2017.javazone.no/program/c5577d90198b474cbf14c7867209d96c
+* http://hg.openjdk.java.net/jdk6/jdk6/jdk/raw-file/tip/src/share/demo/jvmti/hprof/manual.html
+* http://hg.openjdk.java.net/jdk8/jdk8/jdk/raw-file/tip/src/share/demo/jvmti/hprof/manual.html
+* https://github.com/AdoptOpenJDK/openjdk-jdk8u/blob/master/jdk/src/share/demo/jvmti/hprof/manual.html
+* https://github.com/headius/hprof2/blob/master/hprof_b_spec.h
+
+
+.Other projects
+* https://github.com/mehmetgunturkun/cheap
