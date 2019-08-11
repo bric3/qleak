@@ -5,6 +5,7 @@ plugins {
     id "org.jetbrains.kotlin.plugin.allopen" version "1.3.41"
     id "com.github.johnrengelman.shadow" version "4.0.2"
     id "application"
+    id "com.github.ben-manes.versions" version "0.22.0"
 }
 
 
@@ -39,6 +40,12 @@ dependencies {
     compile "info.picocli:picocli"
     compile "io.micronaut.configuration:micronaut-picocli"
     compile "org.fusesource.jansi:jansi:1.18"
+
+    compile "com.squareup.leakcanary:shark:${sharkVersion}"
+    compile "com.squareup.leakcanary:shark-hprof:${sharkVersion}"
+    compile "com.squareup.leakcanary:shark-graph:${sharkVersion}"
+    compile "com.squareup.leakcanary:shark-log:${sharkVersion}"
+    compile "com.squareup.leakcanary:shark-cli:${sharkVersion}"
 
     kapt "io.micronaut:micronaut-inject-java"
     kapt "io.micronaut:micronaut-validation"
