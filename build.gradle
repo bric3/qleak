@@ -22,7 +22,8 @@ dependencyManagement {
         // https://search.maven.org/artifact/io.micronaut/micronaut-bom/1.2.0/pom
         mavenBom('io.micronaut:micronaut-bom:1.2.0') {
             bomProperties([
-                    'junit5.version': junitVersion
+                    'junit5.version': junitVersion,
+                    'picocli.version': picocliVersion
             ])
         }
     }
