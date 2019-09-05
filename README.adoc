@@ -23,8 +23,10 @@ https://github.com/aragozin/jvm-tools/tree/master/hprof-heap[JVM Heap Dump Analy
 * https://2017.javazone.no/program/c5577d90198b474cbf14c7867209d96c
 * http://hg.openjdk.java.net/jdk6/jdk6/jdk/raw-file/tip/src/share/demo/jvmti/hprof/manual.html
 * http://hg.openjdk.java.net/jdk8/jdk8/jdk/raw-file/tip/src/share/demo/jvmti/hprof/manual.html
-* https://github.com/AdoptOpenJDK/openjdk-jdk8u/blob/master/jdk/src/share/demo/jvmti/hprof/manual.html
+* https://htmlpreview.github.io/?https://github.com/AdoptOpenJDK/openjdk-jdk8u/blob/master/jdk/src/share/demo/jvmti/hprof/manual.html#mozTocId848088[https://github.com/AdoptOpenJDK/openjdk-jdk8u/blob/master/jdk/src/share/demo/jvmti/hprof/manual.html]
+* http://hg.openjdk.java.net/jdk6/jdk6/jdk/raw-file/tip/src/share/demo/jvmti/hprof/manual.html
 * https://github.com/headius/hprof2/blob/master/hprof_b_spec.h
+* https://android.googlesource.com/platform/dalvik.git/+/android-4.2.2_r1/tools/hprof-conv/HprofConv.c
 
 
 .Other projects

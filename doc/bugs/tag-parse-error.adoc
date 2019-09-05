@@ -1,0 +1,117 @@
+== HPROF parse error
+
+* PR on leak-canary : https://github.com/square/leakcanary/pull/1559
+* Status : resolved
+
+'''
+
+[source]
+----
+40 : class shark.HprofRecord$StringRecord : io/reactivex/internal/operators/flowable/FlowableMergeWithMaybe$MergeWithObserver
+138 : class shark.HprofRecord$StringRecord : AtomicThrowable.java
+175 : class shark.HprofRecord$StringRecord : IS_UNRESERVED
+205 : class shark.HprofRecord$StringRecord : isSupportedSyntheticsVersion
+250 : class shark.HprofRecord$StringRecord : HV000178: Multiplier cannot be negative: %d.
+311 : class shark.HprofRecord$StringRecord : theCloseBracketFor
+346 : class shark.HprofRecord$StringRecord : GenericWebApplicationContext does not support setConfigLocations(). Do you still have an 'contextConfigLocations' init-param set?
+492 : class shark.HprofRecord$StringRecord : Method io/sqreen/agent/relocated/net/bytebuddy/description/method/ParameterList.set(ILjava/lang/Object;)Ljava/lang/Object; is abstract
+643 : class shark.HprofRecord$StringRecord : DefaultDestinationPredicate.java
+692 : class shark.HprofRecord$StringRecord : PLOOKAHEAD_OUT
+723 : class shark.HprofRecord$StringRecord : (Ljava/security/spec/ECPoint;Ljava/security/spec/ECParameterSpec;)V
+807 : class shark.HprofRecord$StringRecord : CRL_REASON
+834 : class shark.HprofRecord$StringRecord : Lcom/newrelic/agent/deps/org/apache/logging/log4j/core/config/AppenderControlArraySet;
+937 : class shark.HprofRecord$StringRecord : jdk/nashorn/internal/scripts/Script$Recompilation$466$1838AAA$\^eval\_
+1024 : class shark.HprofRecord$StringRecord : for_repeat
+1051 : class shark.HprofRecord$StringRecord : Command execution of %s was successful. Return: %s
+1118 : class shark.HprofRecord$StringRecord : lastActiveFilter
+1151 : class shark.HprofRecord$StringRecord : MultithreadEventLoopGroup.java
+1198 : class shark.HprofRecord$StringRecord : isLazilyInstantiated
+1235 : class shark.HprofRecord$StringRecord : (Ljava/lang/Class<*>;[Lorg/springframework/core/ResolvableType;)Lorg/springframework/core/ResolvableType;
+1357 : class shark.HprofRecord$StringRecord : computeMethodHash
+1391 : class shark.HprofRecord$StringRecord : AtomicBooleanSerializer
+
+...
+
+19372919 : class shark.HprofRecord$StringRecord : CertificateException.java
+19372961 : class shark.HprofRecord$StringRecord : x509.info.serialNumber
+19373000 : class shark.HprofRecord$StringRecord : val$expectedValuesPerKey
+19373041 : class shark.HprofRecord$StringRecord : UPPER_CAMEL_CASE
+19373074 : class shark.HprofRecord$StringRecord : Ljava/util/Map$Entry<Ljava/io/File;Lcom/newrelic/weave/weavepackage/WeavePackageConfig;>;
+19373180 : class shark.HprofRecord$StringRecord : characterStream
+19373212 : class shark.HprofRecord$StringRecord : fragments
+19373238 : class shark.HprofRecord$StringRecord : MdcPatternConverter
+19373274 : class shark.HprofRecord$StringRecord : sun/reflect/UnsafeStaticDoubleFieldAccessorImpl
+Exception in thread "main" picocli.CommandLine$ExecutionException: Error while running command (qleak.QLeakCommand@89ff02e): java.lang.IllegalStateException: Unknown tag 192 after 35
+	at picocli.CommandLine.executeUserObject(CommandLine.java:1738)
+	at picocli.CommandLine.access$900(CommandLine.java:145)
+	at picocli.CommandLine$RunLast.handle(CommandLine.java:2101)
+	at picocli.CommandLine$RunLast.handle(CommandLine.java:2068)
+	at picocli.CommandLine$AbstractParseResultHandler.handleParseResult(CommandLine.java:1928)
+	at picocli.CommandLine.parseWithHandlers(CommandLine.java:2282)
+	at picocli.CommandLine.run(CommandLine.java:2831)
+	at picocli.CommandLine.run(CommandLine.java:2755)
+	at io.micronaut.configuration.picocli.PicocliRunner.run(PicocliRunner.java:139)
+	at io.micronaut.configuration.picocli.PicocliRunner.run(PicocliRunner.java:117)
+	at qleak.QLeakCommand$Companion.main(QLeakCommand.kt:118)
+	at qleak.QLeakCommand.main(QLeakCommand.kt)
+Caused by: java.lang.IllegalStateException: Unknown tag 192 (0xc0) after 35 (0x23)
+	at shark.HprofReader.readHprofRecords(HprofReader.kt:491)
+	at qleak.QLeakCommand.run(QLeakCommand.kt:73)
+	at picocli.CommandLine.executeUserObject(CommandLine.java:1729)
+	... 11 more
+----
+
+19373274 (shark) - 19278582 (hex fiend) = 94692
+
+[source]
+----
+Searching for : `sun/reflect/UnsafeStaticDoubleFieldAccessorImpl`
+47 bytes selected at offset 19278599 out of 2158190480 bytes
+0x2F bytes selected at offset 0x1262B07 out of 0x80A35F90 bytes
+
+Record starts at 19278582
+01000000 00000000 3700007F 879C0BAD D073756E 2F726566 6C656374 2F556E73 61666553 74617469 63446F75 626C6546 69656C64 41636365 73736F72 496D706C
+ ^< time  ><length >< id             >< sun/reflect/UnsafeStaticDoubleFieldAccessorImpl                                                       >
+tag STRING_IN_UTF_8 (0x01)
+length in *big endian* = 55  (= idsize (8) + string (47))
+----
+
+Searching for : `0x23`
+Byte 19286479 selected out of 2158190480 bytes
+Byte 0x12649CF selected out of 0x80A35F90 bytes
+
+[source]
+----
+Records starts at 19278646
+02 tag LOAD_CLASS (0x02)
+00000000 time offset
+00000018 length 24
+00006636 class serial number
+00000000D51BD0B0 id (idSize = 8)
+00000001 stacktrace serial
+00007F81D40039C0 name string id (idSize = 8)
+----
+
+
+20545765 (shark) - 94692 = 20451073 (hex fiend)
+
+
+length = 352098067
+
+heapDumpTag = 32 (0x20)
+
+
+
+'''
+
+
+At 12887587 (0x20 )
+20000000 0701F02B 60000000 01000000 07004A25 98000000 0701F028 F8000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000020 00000007 01F02210 00000001 00000007 004A2598 00000007 01F01FA8 00000000 00000000 00000000 00000000 00000000 00000000 00...
+
+At 14485901 (0x23 PRIMITIVE_ARRAY_DUMP)
+At 14485902
+23000000 07000000 00000000 0100030E 6208504B 01021403 0A000008 08006D39 BE4E0000 00000200 00000000 00000900 00000000 00000000 1000ED41 00000000
+At 14485919 (reading byte array of 200290) up to 14686209
+
+At 14686209 (0x21 INSTANCE_DUMP)
+

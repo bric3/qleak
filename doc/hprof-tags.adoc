@@ -1,0 +1,60 @@
+== Hprof notes
+
+:url-hprof-heap: https://github.com/oracle/visualvm/blob/9a43222f488b8f9e9fba71363c4bcd056c532948/visualvm/libs.profiler/lib.profiler/src/org/graalvm/visualvm/lib/jfluid/heap/HprofHeap.java#L70-L109
+
+[source,title={url-hprof-heap}[Hprof heap tags]]
+----
+    // dump tags
+    static final int STRING = 1;
+    static final int LOAD_CLASS = 2;
+    private static final int UNLOAD_CLASS = 3;
+    static final int STACK_FRAME = 4;
+    static final int STACK_TRACE = 5;
+    private static final int ALLOC_SITES = 6;
+    static final int HEAP_SUMMARY = 7;
+    private static final int START_THREAD = 0xa;
+    private static final int END_THREAD = 0xb;
+    private static final int HEAP_DUMP = 0xc;
+    private static final int HEAP_DUMP_SEGMENT = 0x1c;
+    private static final int HEAP_DUMP_END = 0x2c;
+    private static final int CPU_SAMPLES = 0xd;
+    private static final int CONTROL_SETTINGS = 0xe;
+
+    // heap dump tags
+    static final int ROOT_UNKNOWN = 0xff;
+    static final int ROOT_JNI_GLOBAL = 1;
+    static final int ROOT_JNI_LOCAL = 2;
+    static final int ROOT_JAVA_FRAME = 3;
+    static final int ROOT_NATIVE_STACK = 4;
+    static final int ROOT_STICKY_CLASS = 5;
+    static final int ROOT_THREAD_BLOCK = 6;
+    static final int ROOT_MONITOR_USED = 7;
+    static final int ROOT_THREAD_OBJECT = 8;
+    static final int CLASS_DUMP = 0x20;
+    static final int INSTANCE_DUMP = 0x21;
+    static final int OBJECT_ARRAY_DUMP = 0x22;
+    static final int PRIMITIVE_ARRAY_DUMP = 0x23;
+
+    //  HPROF HEAP 1.0.3 tags
+    static final int HEAP_DUMP_INFO                = 0xfe;
+    static final int ROOT_INTERNED_STRING          = 0x89;
+    static final int ROOT_FINALIZING               = 0x8a;
+    static final int ROOT_DEBUGGER                 = 0x8b;
+    static final int ROOT_REFERENCE_CLEANUP        = 0x8c;
+    static final int ROOT_VM_INTERNAL              = 0x8d;
+    static final int ROOT_JNI_MONITOR              = 0x8e;
+    static final int UNREACHABLE                   = 0x90; /* deprecated */
+    static final int PRIMITIVE_ARRAY_NODATA_DUMP   = 0xc3;
+
+    // basic type
+    static final int OBJECT = 2;
+    static final int BOOLEAN = 4;
+    static final int CHAR = 5;
+    static final int FLOAT = 6;
+    static final int DOUBLE = 7;
+    static final int BYTE = 8;
+    static final int SHORT = 9;
+    static final int INT = 10;
+    static final int LONG = 11;
+    private static final boolean DEBUG = false;
+----
