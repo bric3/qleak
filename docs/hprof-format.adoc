@@ -412,9 +412,15 @@ HEAP DUMP SEGMENT
 
 |===
 
-Handling of Arrays
+=== Handling of Arrays
 
-There will be a "LOAD CLASS" tag for the type of each array in the dump. In the LOAD CLASS record, the class name string ID will refer to a string with a human-readable name of the array type that is formatted as the type name would be in Java source code. Thus, the LOAD CLASS record for the type char[] will be "char[]", for short[][][] will be "short[][][]" and for MyType[] will be "MyType[]".
+There will be a "LOAD CLASS" tag for the type of each array in the dump.
+In the LOAD CLASS record, the class name string `ID` will refer to a string
+with a human-readable name of the array type that is formatted as the type
+name would be in Java source code.
+
+Thus, the LOAD CLASS record for the type `char[]` will be `char[]`, for
+`short[][][]` will be `short[][][]` and for `MyType[]` will be `MyType[]`.
 
 
 
