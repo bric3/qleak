@@ -1,11 +1,11 @@
 plugins {
     id "io.spring.dependency-management" version "1.0.8.RELEASE"
-    id "org.jetbrains.kotlin.jvm" version "1.3.41"
-    id "org.jetbrains.kotlin.kapt" version "1.3.41"
-    id "org.jetbrains.kotlin.plugin.allopen" version "1.3.41"
+    id "org.jetbrains.kotlin.jvm" version "1.3.50"
+    id "org.jetbrains.kotlin.kapt" version "1.3.50"
+    id "org.jetbrains.kotlin.plugin.allopen" version "1.3.50"
     id "com.github.johnrengelman.shadow" version "4.0.2"
     id "application"
-    id "com.github.ben-manes.versions" version "0.22.0"
+    id "com.github.ben-manes.versions" version "0.24.0"
     id 'org.asciidoctor.jvm.convert' version "2.3.0"
 }
 
@@ -21,7 +21,7 @@ repositories {
 dependencyManagement {
     imports {
         // https://search.maven.org/artifact/io.micronaut/micronaut-bom/1.2.0/pom
-        mavenBom('io.micronaut:micronaut-bom:1.2.0') {
+        mavenBom('io.micronaut:micronaut-bom:1.2.1') {
             bomProperties([
                     'junit5.version': junitVersion,
                     'picocli.version': picocliVersion
