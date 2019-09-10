@@ -6,6 +6,7 @@ plugins {
     id "com.github.johnrengelman.shadow" version "4.0.2"
     id "application"
     id "com.github.ben-manes.versions" version "0.22.0"
+    id 'org.asciidoctor.jvm.convert' version "2.3.0"
 }
 
 
@@ -112,3 +113,17 @@ distTar.enabled = false
 distZip.enabled = false
 shadowDistTar.enabled = false
 shadowDistZip.enabled = false
+
+asciidoctor {
+    sourceDir  file('docs')
+//    sources {
+//        include 'toplevel.adoc', 'another.adoc', 'third.adoc'
+//    }
+    outputDir  file('build/docs')
+
+    asciidoctorj {
+        options  doctype: 'article'
+
+        attributes toc : 'right'
+    }
+}
