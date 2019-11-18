@@ -21,10 +21,13 @@ repositories {
 dependencyManagement {
     imports {
         // https://search.maven.org/artifact/io.micronaut/micronaut-bom/1.2.0/pom
-        mavenBom('io.micronaut:micronaut-bom:1.2.1') {
+        mavenBom("io.micronaut:micronaut-bom:${micronautVersion}") {
             bomProperties([
                     'junit5.version': junitVersion,
-                    'picocli.version': picocliVersion
+                    'picocli.version': picocliVersion,
+                    'jackson.version': jacksonVersion,
+                    'jackson.modules.version': jacksonVersion,
+                    'jackson.datatype.version': jacksonVersion
             ])
         }
     }
@@ -126,4 +129,20 @@ asciidoctor {
 
         attributes toc : 'right'
     }
+}
+
+dependencyUpdates {
+    revision = "release"
+    def isNonStable = { String version ->
+        def stableKeyword = ['RELEASE', 'FINAL', 'GA'].any { qualifier -> version.toUpperCase().contains(qualifier) }
+        def regex = /^[0-9,.v-]+$/
+        return !stableKeyword && !(version ==~ regex)
+    }
+
+    rejectVersionIf { selection ->
+        return (isNonStable(selection.candidate.version) && !isNonStable(selection.currentVersion))
+    }
+
+    checkForGradleUpdate = true
+    gradleReleaseChannel = "current"
 }
