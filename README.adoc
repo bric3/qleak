@@ -1,0 +1,6 @@
+= Qleak
+
+A simple memory (hprof) analysis tool.
+
+image::https://github.com/bric3/qleak/workflows/Java%20CI/badge.svg[]
+
