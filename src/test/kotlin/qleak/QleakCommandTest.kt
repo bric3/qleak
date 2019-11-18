@@ -3,35 +3,37 @@ package qleak
 import io.micronaut.configuration.picocli.PicocliRunner
 import io.micronaut.context.ApplicationContext
 import io.micronaut.context.env.Environment
-
-import org.jetbrains.spek.api.Spek
-import org.jetbrains.spek.api.dsl.describe
-import org.jetbrains.spek.api.dsl.it
-import org.jetbrains.spek.api.dsl.on
-import org.junit.jupiter.api.Assertions.*
-
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Disabled
+import org.junit.jupiter.api.Test
 import java.io.ByteArrayOutputStream
 import java.io.PrintStream
 
-object QleakCommandTest : Spek({
-
-    describe("qleak") {
+class QleakCommandTest {
+    @Test
+    fun should_report_usage() {
         val ctx = ApplicationContext.run(Environment.CLI, Environment.TEST)
 
-        on("invocation with -v") {
-            val baos = ByteArrayOutputStream()
-            System.setOut(PrintStream(baos))
+        val baos = ByteArrayOutputStream()
+        System.setOut(PrintStream(baos))
 
-            val args = arrayOf("-v")
-            PicocliRunner.run(QLeakCommand::class.java, ctx, *args)
+        val args = arrayOf("-h")
+        PicocliRunner.run(QLeakCommand::class.java, ctx, *args)
 
-            it("should display greeting") {
-                assertTrue(baos.toString().contains("Hi!"))
-            }
-        }
-
-        on("other") {
-            // add more tests...
-        }
+        assertThat(baos.toString()).contains("Usage: qleak").contains("HPROF")
     }
-})
+
+    @Test
+    @Disabled("--version option does not work in test mode")
+    fun should_report_version() {
+        val ctx = ApplicationContext.run(Environment.CLI, Environment.TEST)
+
+        val baos = ByteArrayOutputStream()
+        System.setErr(PrintStream(baos))
+
+        val args = arrayOf("--version")
+        PicocliRunner.run(QLeakCommand::class.java, ctx, *args)
+
+        assertThat(baos.toString()).matches("qleak [\\d.]{3,}")
+    }
+}
