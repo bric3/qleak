@@ -42,7 +42,7 @@ class QLeakCommand : Runnable {
         var simpleNamePrefix: String? = null
         @Option(names = ["-q", "--qualified-name-prefix"], required = true)
         var qualifiedNamePrefix: String? = null
-        @Option(names = ["-r", "--read-all-records"], required = true)
+        @Option(names = ["-r", "--read-all-records"], required = true) // TODO reads only strings
         var readAllRecords: Boolean = false
         @Option(names = ["-t", "--read-all-threads"], required = true)
         var readAllThreadNames: Boolean = false // TODO thread name filter
@@ -73,7 +73,9 @@ class QLeakCommand : Runnable {
                             hprof.reader.readHprofRecords(
                                     recordTypes = setOf(HprofRecord.StringRecord::class),
                                     listener = OnHprofRecordListener { position, record ->
-                                        println((record as HprofRecord.StringRecord).string)
+                                        if(record is HprofRecord.StringRecord) {
+                                            println("""$position : ${record.string}""")
+                                        }
                                     })
                         } else if (!readOperation?.simpleNamePrefix.isNullOrBlank()) {
                             val graph = HprofHeapGraph.indexHprof(hprof)
