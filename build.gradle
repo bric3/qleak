@@ -39,34 +39,34 @@ configurations {
 }
 
 dependencies {
-    compile "io.micronaut:micronaut-runtime"
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}"
-    compile "org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}"
-    compile "info.picocli:picocli"
-    compile "io.micronaut.configuration:micronaut-picocli"
-    compile "org.fusesource.jansi:jansi:1.18"
+    implementation "io.micronaut:micronaut-runtime"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}"
+    implementation "org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}"
+    implementation "info.picocli:picocli"
+    implementation "io.micronaut.configuration:micronaut-picocli"
+    implementation "org.fusesource.jansi:jansi:1.18"
 
-    compile "com.squareup.leakcanary:shark:${sharkVersion}"
-    compile "com.squareup.leakcanary:shark-hprof:${sharkVersion}"
-    compile "com.squareup.leakcanary:shark-graph:${sharkVersion}"
-    compile "com.squareup.leakcanary:shark-log:${sharkVersion}"
-    compile "com.squareup.leakcanary:shark-cli:${sharkVersion}"
+    implementation "com.squareup.leakcanary:shark:${sharkVersion}"
+    implementation "com.squareup.leakcanary:shark-hprof:${sharkVersion}"
+    implementation "com.squareup.leakcanary:shark-graph:${sharkVersion}"
+    implementation "com.squareup.leakcanary:shark-log:${sharkVersion}"
+    implementation "com.squareup.leakcanary:shark-cli:${sharkVersion}"
 
     kapt "io.micronaut:micronaut-inject-java"
     kapt "io.micronaut:micronaut-validation"
     kaptTest "io.micronaut:micronaut-inject-java"
 
-    runtime "com.fasterxml.jackson.module:jackson-module-kotlin"
-    runtime "ch.qos.logback:logback-classic:1.2.3"
+    runtimeOnly "com.fasterxml.jackson.module:jackson-module-kotlin"
+    runtimeOnly "ch.qos.logback:logback-classic:1.2.3"
 
     testAnnotationProcessor "io.micronaut:micronaut-inject-java"
-    testCompile "org.assertj:assertj-core:${assertjVersion}"
-    testCompile "org.junit.jupiter:junit-jupiter-api"
-    testCompile "org.jetbrains.spek:spek-api:${spekVersion}"
-    testCompile "io.micronaut.test:micronaut-test-junit5"
-    testCompile "io.micronaut:micronaut-inject-java"
-    testRuntime "org.junit.jupiter:junit-jupiter-engine"
-    testRuntime "org.jetbrains.spek:spek-junit-platform-engine:${spekVersion}"
+    testImplementation "org.assertj:assertj-core:${assertjVersion}"
+    testImplementation "org.junit.jupiter:junit-jupiter-api"
+    testImplementation "org.jetbrains.spek:spek-api:${spekVersion}"
+    testImplementation "io.micronaut.test:micronaut-test-junit5"
+    testImplementation "io.micronaut:micronaut-inject-java"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine"
+    testRuntimeOnly "org.jetbrains.spek:spek-junit-platform-engine:${spekVersion}"
 }
 
 test.classpath += configurations.developmentOnly
