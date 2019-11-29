@@ -1,5 +1,5 @@
 profile: cli
 defaultPackage: qleak
 ---
-testFramework: spek
+testFramework: junit
 sourceLanguage: kotlin
