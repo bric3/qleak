@@ -39,12 +39,13 @@ configurations {
 }
 
 dependencies {
+    annotationProcessor "io.micronaut.configuration:micronaut-picocli"
     implementation("io.micronaut:micronaut-runtime")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}")
     implementation("org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}")
     implementation("info.picocli:picocli")
     implementation("io.micronaut.configuration:micronaut-picocli")
-    implementation("org.fusesource.jansi:jansi:1.18")
+    implementation("org.fusesource.jansi:jansi:${jansiVersion}")
 
     implementation("com.squareup.leakcanary:shark:${sharkVersion}")
     implementation("com.squareup.leakcanary:shark-hprof:${sharkVersion}")
@@ -56,7 +57,7 @@ dependencies {
     kaptTest("io.micronaut:micronaut-inject-java")
 
     runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
-    runtimeOnly("ch.qos.logback:logback-classic:1.2.3")
+    runtimeOnly("ch.qos.logback:logback-classic:${logbackVersion}")
 
     testAnnotationProcessor("io.micronaut:micronaut-inject-java")
     testImplementation("org.assertj:assertj-core:${assertjVersion}")
