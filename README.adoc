@@ -4,3 +4,48 @@ A simple memory (hprof) analysis tool.
 
 image::https://github.com/bric3/qleak/workflows/Java%20CI/badge.svg[]
 
+== Build
+
+[source,bash]
+----
+./gradle assemble
+./docker-build.sh
+----
+
+Or locally
+
+[source,bash]
+----
+./gradle assemble
+native-image --no-server -cp build/libs/qleak-*.jar
+----
+
+== Notes
+
+The project was initialized using the following micronaut command
+
+[source,bash]
+----
+mn create-cli-app qleak --lang kotlin --features=graal-native-image
+----
+
+== Set-up
+
+=== OSX
+
+[source,bash]
+----
+brew cask install graalvm-ce-java11 <1>
+brew install --HEAD jenv <2>
+sudo xattr -r -d com.apple.quarantine /Library/Java/JavaVirtualMachines/graalvm-ce-java11-19.3.0/ <3>
+jenv add /Library/Java/JavaVirtualMachines/graalvm-ce-java11-19.3.0/Contents/Home/ <4>
+gu install native-image <5>
+jenv rehash <6>
+----
+<1> install the latest graalvm
+<2> get jenv from head to support providers
+<3> Since GraalVM 19.3.0 is not yet notarized, it is necessary to remove the quarantine flags
+<4> Tell jenv where to find graalvm
+<5> Get `native-image` binary
+<6> Tell jenv to rehash in order to generate the _shim_ of `native-image`
+

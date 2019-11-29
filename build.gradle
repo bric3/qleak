@@ -36,9 +36,12 @@ dependencyManagement {
 configurations {
     // for dependencies that are needed for development only
     developmentOnly
+    generateConfig
 }
 
 dependencies {
+    generateConfig "info.picocli:picocli-codegen:${picocliVersion}"
+    
     annotationProcessor "io.micronaut.configuration:micronaut-picocli"
     implementation("io.micronaut:micronaut-runtime")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}")
@@ -60,6 +63,10 @@ dependencies {
     runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
     runtimeOnly("ch.qos.logback:logback-classic:${logbackVersion}")
 
+    // micraunaut graalvm-native-image
+    compileOnly "com.oracle.substratevm:svm"
+    annotationProcessor "io.micronaut:micronaut-graal"
+
     testAnnotationProcessor("io.micronaut:micronaut-inject-java")
     testImplementation("org.assertj:assertj-core:${assertjVersion}")
     testImplementation("org.junit.jupiter:junit-jupiter-api")
@@ -70,6 +77,25 @@ dependencies {
 
 test.classpath += configurations.developmentOnly
 mainClassName = "qleak.QLeakCommand"
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+    options.compilerArgs.addAll(["--release", "11", "-parameters", "-Aproject=${project.group}/${project.name}"])
+}
+
+task(generateGraalReflectionConfig, dependsOn: 'classes', type: JavaExec) {
+    main = 'picocli.codegen.aot.graalvm.ReflectionConfigGenerator'
+    classpath = configurations.generateConfig + sourceSets.main.runtimeClasspath
+    def outputFile = "${buildDir}/resources/main/META-INF/native-image/${project.group}/${project.name}/reflect-config.json"
+    args = ["--output=$outputFile", 'qleak.QLeakCommand']
+}
+assemble.dependsOn generateGraalReflectionConfig
 
 jar {
     manifest {
