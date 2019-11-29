@@ -1,6 +1,7 @@
 package qleak
 
 import io.micronaut.configuration.picocli.PicocliRunner
+import picocli.AutoComplete
 import picocli.CommandLine.ArgGroup
 import picocli.CommandLine.Command
 import picocli.CommandLine.Option
@@ -27,7 +28,8 @@ import java.util.concurrent.atomic.AtomicLong
          ],
          description = ["Hprof leak analyzer"],
          mixinStandardHelpOptions = true,
-         versionProvider = ManifestVersionProvider::class)
+         versionProvider = ManifestVersionProvider::class,
+         subcommands = [AutoComplete.GenerateCompletion::class])
 class QLeakCommand : Runnable {
 
 //    @Option(names = ["-v", "--verbose"], description = ["..."])
