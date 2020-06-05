@@ -1,6 +1,5 @@
 package qleak
 
-import io.micronaut.configuration.picocli.PicocliRunner
 import picocli.AutoComplete
 import picocli.CommandLine.ArgGroup
 import picocli.CommandLine.Command
@@ -114,12 +113,5 @@ class QLeakCommand : Runnable {
                     }
         }
 
-    }
-
-    companion object {
-        @JvmStatic
-        fun main(args: Array<String>) {
-            PicocliRunner.run(QLeakCommand::class.java, *args)
-        }
     }
 }

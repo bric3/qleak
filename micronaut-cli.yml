@@ -1,5 +1,0 @@
-profile: cli
-defaultPackage: qleak
----
-testFramework: junit
-sourceLanguage: kotlin

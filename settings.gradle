@@ -1,5 +1,11 @@
 pluginManagement {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        gradlePluginPortal()
+    }
     plugins {
+        id 'io.quarkus' version "${quarkusPluginVersion}"
         id "io.spring.dependency-management" version "${springDepManagementPluginVersion}"
         id 'org.jetbrains.gradle.plugin.idea-ext' version "${ideaExtPluginVersion}"
         id "org.jetbrains.kotlin.jvm" version "${kotlinVersion}"
@@ -11,4 +17,4 @@ pluginManagement {
     }
 }
 
-rootProject.name="qleak"
+rootProject.name='qleak'

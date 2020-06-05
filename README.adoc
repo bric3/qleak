@@ -8,7 +8,7 @@ image::https://github.com/bric3/qleak/workflows/Java%20CI/badge.svg[]
 
 [source,bash]
 ----
-./gradle assemble
+./gradlew quarkusBuild --uber-jar
 ./docker-build.sh
 ----
 
@@ -22,11 +22,27 @@ native-image --no-server -cp build/libs/qleak-*.jar
 
 == Notes
 
-The project was initialized using the following micronaut command
+The project was started with micronaut and initialized using the following micronaut command:
 
+.micronaut 1.2.1
 [source,bash]
 ----
 mn create-cli-app qleak --lang kotlin --features=graal-native-image
+----
+
+Then switched over to quarkus
+
+.quarkus 1.5.0
+[source,bash]
+----
+mvn io.quarkus:quarkus-maven-plugin:1.5.0.Final:create \
+    -DprojectGroupId=qleak \
+    -DprojectArtifactId=qleak \
+    -DprojectVersion=0.1 \
+    -DclassName="qleak.Qleak" \
+    -Dextensions="kotlin,picocli" \
+    -DbuildTool=gradle
+
 ----
 
 == Set-up
