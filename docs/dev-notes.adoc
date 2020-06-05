@@ -31,3 +31,7 @@ https://github.com/aragozin/jvm-tools/tree/master/hprof-heap[JVM Heap Dump Analy
 
 .Other projects
 * https://github.com/mehmetgunturkun/cheap
+
+
+.Other reads
+* https://shipilev.net/jvm/objects-inside-out/
