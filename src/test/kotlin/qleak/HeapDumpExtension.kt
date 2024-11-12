@@ -27,7 +27,7 @@ class HeapDumpExtension : BeforeTestExecutionCallback, AfterTestExecutionCallbac
         val tempDir = getStore(context!!).get(HEAP_DUMP_DIR)
         Files.walk(tempDir as Path)
                 .sorted(Comparator.reverseOrder())
-                .map(Path::toFile)
+                .map { it.toFile() }
                 .forEach { it.delete() };
     }
 

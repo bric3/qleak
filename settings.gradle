@@ -1,14 +1,1 @@
-pluginManagement {
-    plugins {
-        id "io.spring.dependency-management" version "${springDepManagementPluginVersion}"
-        id 'org.jetbrains.gradle.plugin.idea-ext' version "${ideaExtPluginVersion}"
-        id "org.jetbrains.kotlin.jvm" version "${kotlinVersion}"
-        id "org.jetbrains.kotlin.kapt" version "${kotlinVersion}"
-        id "org.jetbrains.kotlin.plugin.allopen" version "${kotlinVersion}"
-        id "com.github.johnrengelman.shadow" version "${shadowPluginVersion}"
-        id "com.github.ben-manes.versions" version "${depUpdatesPluginVersion}"
-        id 'org.asciidoctor.jvm.convert' version "${asciidoctorJvmConvertPluginVersion}"
-    }
-}
-
 rootProject.name="qleak"

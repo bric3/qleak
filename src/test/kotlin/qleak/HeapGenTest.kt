@@ -8,7 +8,7 @@ import org.junit.jupiter.api.extension.ExtendWith
 class HeapGenTest {
 
     @Test
-    internal fun can_heap_dump(heapDumper: HeapDumpExtension.HeapDumper) {
+    fun can_heap_dump(heapDumper: HeapDumpExtension.HeapDumper) {
         val hprofPath = heapDumper.dumpHeap()
 
         assertThat(hprofPath).exists()

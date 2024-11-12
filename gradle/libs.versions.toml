@@ -1,0 +1,33 @@
+
+
+[versions]
+# libraries
+junit = "4.13.2"
+
+# plugins
+changelog = "2.2.1"
+intelliJPlatform = "2.1.0"
+kotlin = "2.0.21"
+idea-ext = "1.1.9"
+yumi-licenser = "2.0.0"
+
+spring-dependency-management = "1.1.6"
+gradle-download-plugin = "5.5.0"
+shadow-jar = "8.1.1"
+asciidoctor-convert = "3.2.0"
+ideaExtPlugin = "1.1.9"
+
+[libraries]
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+
+gradlePlugin-yumi-licenser = { module = "dev.yumi:yumi-gradle-licenser", version.ref = "yumi-licenser" }
+
+[plugins]
+ideaExt = { id = "org.jetbrains.gradle.plugin.idea-ext", version.ref = "ideaExtPlugin" }
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
+kotlin-plugin-allopen = { id = "org.jetbrains.kotlin.plugin.allopen", version.ref = "kotlin" }
+spring-dependency-management = { id = "io.spring.dependency-management", version.ref = "spring-dependency-management" }
+download = { id = "de.undercouch.download", version.ref = "gradle-download-plugin" }
+shadow-jar = { id = "com.github.johnrengelman.shadow", version.ref = "shadow-jar" }
+asciidoctor = { id = "org.asciidoctor.jvm.convert", version.ref = "asciidoctor-convert" }
