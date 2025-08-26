@@ -12,3 +12,6 @@ out/
 .settings
 .classpath
 .gradletasknamecache
+
+# Ignore kotlin compiler files
+.kotlin/
